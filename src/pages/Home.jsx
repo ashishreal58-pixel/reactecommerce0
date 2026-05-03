@@ -1,16 +1,29 @@
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
-import { useStore } from "../context/StoreContext";
+import { useEffect, useState } from "react";
+import { fetchProducts } from "../api/productsApi";
 
 const Home = () => {
-  const { PRODUCTS, search } = useStore();
+  const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    fetchProducts().then(setProducts);
+  }, []);
+
+  const filtered = products.filter(p =>
+    p.title.toLowerCase().includes(search)
+  );
 
   return (
     <div>
-      <Navbar />
-      {PRODUCTS.filter(p => p.name.includes(search)).map(p => (
-        <ProductCard key={p.id} product={p} />
-      ))}
+      <Navbar setSearch={setSearch} />
+
+      <div className="grid">
+        {filtered.map(p => (
+          <ProductCard key={p.id} product={p} />
+        ))}
+      </div>
     </div>
   );
 };
