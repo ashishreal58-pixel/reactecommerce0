@@ -3,7 +3,7 @@
 
 📌 Project Overview
 
-This project is a React-based E-Commerce Web Application built using modern frontend technologies.
+This is my Capstone capstone a React-based E-Commerce Web Application built using modern frontend technologies.
 It allows users to browse products, search items, and manage a shopping cart with a clean and responsive UI.
 
 ---
